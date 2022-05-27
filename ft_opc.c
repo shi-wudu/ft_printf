@@ -6,7 +6,7 @@
 /*   By: maleandr <maleandr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 22:31:09 by maleandr          #+#    #+#             */
-/*   Updated: 2022/05/26 23:00:43 by maleandr         ###   ########.fr       */
+/*   Updated: 2022/05/27 01:41:33 by maleandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ int	ft_strlen(void *s)
 	return (len);
 }
 
-void	ft_putchar(char c)
+int	ft_putchar(char c)
 {
 	write(1, &c, 1);
 	return (1);
 }
 
-void	ft_putstr(char *s)
+int	ft_putstr(char *s)
 {
 	int	len;
 
@@ -43,11 +43,11 @@ void	ft_putstr(char *s)
 	return (len);
 }
 
-void	ft_putnbr(int n)
+int	ft_putnbr(int n)
 {
-	int	len;
+	int len;
 
-	len = ft_strlen(n);
+	len = 1;
 	if (n == -2147483648)
 		ft_putstr("-2147483648");
 	else
@@ -56,24 +56,27 @@ void	ft_putnbr(int n)
 		{
 			ft_putchar('-');
 			n = n * -1;
+			len++;
 		}
 		if (n > 9)
 		{
 			ft_putnbr(n / 10);
+			len++;
 		}
 		ft_putchar((n % 10) + '0');
 	}
 	return (len);
 }
 
-void	ft_putpos(unsigned int n, int fd)
+int	ft_putpos(unsigned int n, int fd)
 {
 	int	len;
 
-	len = ft_strlen(n);
+	len = 1;
 	if (n > 9)
 	{
 		ft_putnbr(n / 10);
+		len++;
 	}
 	ft_putchar((n % 10) + '0');
 	return (len);

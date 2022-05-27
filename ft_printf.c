@@ -6,7 +6,7 @@
 /*   By: maleandr <maleandr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 22:31:23 by maleandr          #+#    #+#             */
-/*   Updated: 2022/05/26 23:24:23 by maleandr         ###   ########.fr       */
+/*   Updated: 2022/05/27 01:55:01 by maleandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	ft_format(const char *str, int i, va_list args)
 		return (ft_hexa(va_arg(args, unsigned int)));
 	if (str[i + 1] == 'X')
 		return (ft_hexa(va_arg(args, unsigned int)));
-	else if (stri + 1] == 'p')
+	else if (str[i + 1] == 'p')
 		return (ft_putstr("0x") + ft_ptr(va_arg(args, t_llu)));
 	else
 		return (0);
@@ -36,16 +36,27 @@ static int	ft_format(const char *str, int i, va_list args)
 
 int	ft_printf(const char *str, ...)
 {
+	va_list f;
 	int i;
+	int count;
 
+	count = 0;
 	i = 0;
+	va_start(f, str);
 	while (str)
 	{
 		if (str[i] == '%')
 		{
-			
+			count += (ft_format(str, i, f));
+			i++;
 		}
+		else
+		{
+			write (1, &str[i], 1);
+			count++;
+		}
+		i++;
 	}
-	i++;
-		
+	va_end(f);
+	return (count;)
 }
