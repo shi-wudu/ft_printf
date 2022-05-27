@@ -6,11 +6,11 @@
 /*   By: maleandr <maleandr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 23:16:28 by maleandr          #+#    #+#             */
-/*   Updated: 2022/05/26 23:23:57 by maleandr         ###   ########.fr       */
+/*   Updated: 2022/05/27 12:25:02 by maleandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 int	ft_hexa(unsigned long long n, char *base)
 {
@@ -25,6 +25,6 @@ int	ft_hexa(unsigned long long n, char *base)
 		count += ft_putchar(base[n % size]);
 	}	
 	else
-		count += ft_putchar(base[n]);
+		count += ft_putchar(base[n % size]);
 	return (count);
 }
